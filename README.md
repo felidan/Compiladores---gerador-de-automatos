@@ -7,5 +7,5 @@ Ao incluir os parâmetros solicitados o programa irá gerar um arquivo **nome_do
 
 ## Existem 2 opções de geração do programa:
 
-* Gerar por ***(GoTo)***;
-* Gerar por ***(Função)***.
+* Gerar por **GoTo**;
+* Gerar por **Função**.
