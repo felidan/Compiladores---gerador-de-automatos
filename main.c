@@ -278,24 +278,27 @@ char* concatenar(char a[], char b[]){
 	
 int main(int argc, char *argv[]) 
 {
-	char nome[10], q0[30], aux[30];
+	char nome[10], q0[30], aux[30], cmd[30] = {"gcc "}, cmdStart[30] = {"start "};
 	char Q[30][30], S[30], F[30][30];
 	int T[30][30];
 	int TpFuncao = 0, QtAlfabeto = 0, QtEstados = 0, QtEstadosFinais = 0;
 	int i, j, exec;
 	FILE *fp;
-	//char *nomeProg;
+	
 	
 	inicializaMatriz(T);
 	
 	printf("Qual o nome do programa a ser gerado? ");
 	gets(nome);
 	
+
 	for(i=0; nome[i] != '\0'; i++);
 	nome[i++] = '.';
 	nome[i++] = 'c';
 	nome[i] = '\0';
 	
+	
+
 	printf("\nGerar em funcao(1) ou Goto(2))? ");
 	scanf("%d%*c", &TpFuncao);
 	
@@ -357,15 +360,58 @@ int main(int argc, char *argv[])
 	}
 	
 	fclose(fp);
-	
+
 	printf("#Programa gerado.\n");
 	printf("Deseja executar (1 = SIM, 2 = NAO)? ");
 	
 	scanf("%d%*c", &exec);
 	
 	if(exec == 1){
-		//system("gcc -c prog.c");
+		char buffer[30];
+	    i=0;
+		for(i=0; cmd[i] != '\0'; i++){
+			buffer[i] = cmd[i];
+		}
+		for(j=0; nome[j] != '.'; j++){
+			buffer[i] = nome[j];
+			i++;
+		}
+        buffer[i++] = '.';
+	    buffer[i++] = 'c';
+	    buffer[i] = '\0';
+		buffer[i++] = ' ';
+	    buffer[i++] = '-';
+	    buffer[i++] = 'o';
+	    buffer[i++] = ' ';
+
+	    for(j=0; nome[j] != '.'; j++){
+			buffer[i] = nome[j];
+			i++;
+		}
+		buffer[i] = '\0';
+
+		
+		system(buffer);
+
+		i=0;
+		for(i=0; cmdStart[i] != '\0'; i++){
+			buffer[i] = cmdStart[i];
+		}
+
+		for(j=0; nome[j] != '.'; j++){
+			buffer[i] = nome[j];
+			i++;
+		}
+
+		buffer[i++] = '.';
+	    buffer[i++] = 'e';
+	    buffer[i++] = 'x';
+	    buffer[i++] = 'e';
+		buffer[i++] = '\0';
+		
+		system(buffer);
 	}
+	
 	
  	system("pause");
 	return 0;
